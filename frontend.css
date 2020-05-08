@@ -9,20 +9,24 @@ background-color: #e6e6e6;
 div#bandeau {
 height: 100%
 width:100px;
-height:240px;
+height:270px;
 background-color: #ffcc00;
 padding-top: 5px;
 }
 
 
 h1 { font-family: "Mr Dafoe"; font-size: 90px; font-style: normal;
-font-variant: normal; font-weight: 400; line-height: 24px; }
+font-variant: normal; font-weight: 400; line-height: 0px; }
+
 
 h2 {
- font-family: "Times New Roman", font-size: 34px;
-font-style: normal; font-variant: normal;
-font-weight: 400; line-height: 28px; }
+    font-family: 'Allan';font-size: 22px;
+}
 
+
+h3 {
+font-family: 'Julius Sans One';font-size: 22px;
+}
 
 
 #bar {
@@ -30,7 +34,14 @@ position:relative; width:1040px; height:auto;
 }
 
 
-#icon1 {
+#icon {
+position: relative;
+  left: 360px;
+  bottom: 20px;
+}
+
+
+/*#icon1 {
   color: #000;
   position: absolute;
   margin-left: 1080px;
@@ -98,4 +109,4 @@ position:relative; width:1040px; height:auto;
   border-right: solid 1px currentColor;
   border-bottom: solid 1px currentColor;
   background-color: currentColor;
-}
+}*/

@@ -44,6 +44,14 @@ font-family: 'Julius Sans One';font-size: 16px;
 
 
 
+/*Font des prénom*/
+h4 {
+font-family: 'Julius Sans One';font-size: 14px;
+}
+
+
+
+
 /*Code du rectangle jaune de l'authentification*/
 div#authentification {
 background-color: #ffcc00;
@@ -52,6 +60,18 @@ position: absolute;
   right: 34%;
   width: 550px;
 }
+
+
+
+/*Code du rectangle jaune du panier*/
+div#panier {
+background-color: #ffcc00;
+position: absolute;
+  top: 350px;
+  right: 34%;
+  width: 550px;
+}
+
 
 
 
@@ -65,12 +85,12 @@ position: relative;
 
 
 
-
+/*Bordure jaune ou il y a les prénom*/
 div#IsaTim {
   position: absolute;
   top: 100%;
   right: 0;
-  width: 200px;
-  height: 100px;
+  width: 160px;
+  height: 80px;
   border: 3px solid #ffcc00;
 }

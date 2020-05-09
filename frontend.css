@@ -1,10 +1,11 @@
+
+/*Code du bandeau jaune*/
 html, body {
 top: 0;
 margin: 0;
 padding: 0;
 background-color: #e6e6e6;
 }
-
 
 div#bandeau {
 height: 100%
@@ -15,25 +16,46 @@ padding-top: 5px;
 }
 
 
-h1 { font-family: "Mr Dafoe"; font-size: 90px; font-style: normal;
-font-variant: normal; font-weight: 400; line-height: 0px; }
 
-
-h2 {
-    font-family: 'Allan';font-size: 22px;
-}
-
-
-h3 {
-font-family: 'Julius Sans One';font-size: 22px;
-}
-
-
+/*Bar de recherche qui est dans le bandeau*/
 #bar {
 position:relative; width:1040px; height:auto;
 }
 
 
+
+/*Font du titre du site (Foret Bleue)*/
+h1 { font-family: "Mr Dafoe"; font-size: 90px; font-style: normal;
+font-variant: normal; font-weight: 400; line-height: 0px; }
+
+
+
+/*Font de la description du site (Boutique en ligne) et de Compte et Authentification*/
+h2 {
+    font-family: 'Julius Sans One';font-size: 22px;
+}
+
+
+
+/*Font de la partie authentification (user name, password...)*/
+h3 {
+font-family: 'Julius Sans One';font-size: 16px;
+}
+
+
+
+/*Code du rectangle jaune de l'authentification*/
+div#authentification {
+background-color: #ffcc00;
+position: absolute;
+  top: 350px;
+  right: 34%;
+  width: 550px;
+}
+
+
+
+/*Position et taille des icons utilisateur et panier*/
 #icon {
 position: relative;
   left: 360px;
@@ -41,72 +63,14 @@ position: relative;
 }
 
 
-/*#icon1 {
-  color: #000;
+
+
+
+div#IsaTim {
   position: absolute;
-  margin-left: 1080px;
-  margin-top: -9px;
-  width: 14px;
-  height: 6px;
-  border-left: solid 1px currentColor;
-  border-right: solid 1px currentColor;
-  border-top: solid 1px currentColor;
-  border-bottom: solid 1px transparent;
-  background-color: currentColor;
-  border-radius: 6px 6px 0 0;
+  top: 100%;
+  right: 0;
+  width: 200px;
+  height: 100px;
+  border: 3px solid #ffcc00;
 }
-#icon1:before {
-  content: '';
-  position: absolute;
-  left: 2px;
-  top: -10px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  border: solid 1px currentColor;
-  background-color: currentColor;
-}
-
-
-
-
-
-#icon2 {
-  color: #000;
-  position: absolute;
-  margin-top: -13px;
-  margin-left: 1120px;
-  width: 9px;
-  height: 9px;
-  border-left: solid 1px currentColor;
-  border-bottom: solid 1px currentColor;
-  background-color: currentColor;
-  -webkit-transform: rotate(-45deg);
-          transform: rotate(-45deg);
-}
-#icon2:before {
-  content: '';
-  position: absolute;
-  top: -5px;
-  left: -1px;
-  width: 8px;
-  height: 5px;
-  border-radius: 5px 5px 0 0;
-  border-top: solid 1px currentColor;
-  border-left: solid 1px currentColor;
-  border-right: solid 1px currentColor;
-  background-color: currentColor;
-}
-#icon2:after {
-  content: '';
-  position: absolute;
-  top: 0px;
-  left: 8px;
-  width: 5px;
-  height: 8px;
-  border-radius: 0 5px 5px 0;
-  border-top: solid 1px currentColor;
-  border-right: solid 1px currentColor;
-  border-bottom: solid 1px currentColor;
-  background-color: currentColor;
-}*/

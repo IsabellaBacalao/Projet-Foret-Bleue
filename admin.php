@@ -1,6 +1,15 @@
 <?php
 include 'backend.php';
 
+$code_produit = "";
+$nom_produit = "";
+$prix = "";
+$taille = "";
+$quantité = "";
+
+$action= (isset ($_POST["action"])) ? $_POST["action"] : "";
+
+
 //Nouveau enregistrement
 
 if($action == "NEW"){
@@ -68,13 +77,41 @@ $lst_produit = $res->fetchALL();
 
 <!DOCTYPE html>
 <head>
-<html lang="fr">
-   <link rel="stylesheet" href="BS341/css/bootstrap.min.css">
+<html lang="en">
+    <link rel="stylesheet" href="BS341/css/bootstrap.min.css">
+   <link rel="stylesheet" type="text/css" href="style.css">
+   <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Mr+Dafoe"/>
+   <link href='https://fonts.googleapis.com/css?family=Allan' rel='stylesheet'>
+   <link href='https://fonts.googleapis.com/css?family=Julius Sans One' rel='stylesheet'>
     <title>ADMINISTRATEUR</title>
 </head>
 <body>
+<div id="bandeau">
+    <center>
+        <h2>Boutique en ligne</h2>
+        <h1>
+            <a href="Acceuil.php">Forêt Bleue</a>
+        </h1>
+
+
+        <div id="icon">
+
+            <a href="Compte.php">
+                <img src="user.png" alt="Compte" style="width:20px;height:20px;">
+            </a>
+            <a href="Panier.php">
+                <img src="panier.png" alt="Panier" style="width:20px;height:20px;">
+            </a>
+
+        </div>
+
+
+    </center>
+</div>
+
+<div id="principale">
 <center>
-<h1> Gestion des produits </h1>
+<h2> Gestion des produits </h2>
 
 <div class= "container">
 <h2> Produits </h2>
@@ -117,14 +154,14 @@ $lst_produit = $res->fetchALL();
     	   		<form action="admin.php" method="post">
     	   			<input type="hidden"   name="action" value="UPD">
     	   			<input type="hidden"   name="code_produit" value="<?php echo $row["code_produit"] ;?>">
-    	   			<input type="submit" value="M">
+    	   			<input type="submit" value="MODIF">
     	 		</form>
     	   </th>
     	   <th>
     	   		<form action="admin.php" method="post">
     	   			<input type="hidden"   name="action" value="DEL">
     	   			<input type="hidden"   name="code_produit" value="<?php echo $row["code_produit"] ;?>">
-    	   			<input type="submit" value="S">
+    	   			<input type="submit" value="SUPPR">
     	   		</form>
     	   </th>
 
@@ -135,6 +172,7 @@ $lst_produit = $res->fetchALL();
 
 </table>
 
+</div>
 </div>
 </center>
 </body>

@@ -27,6 +27,9 @@
             <a href="Panier.php">
                 <img src="panier.png" alt="Panier" style="width:20px;height:20px;border:0">
             </a>
+             <a href="admin.php">
+                 <img src="admin.png" alt="Admin" style="width:20px;height:20px;border:0">
+             </a>
         </div>
     </center>
 </div>
@@ -70,6 +73,7 @@
 
 
 <!-- Nom et prénom des devs -->
+<br><br>
 <div id="IsaTim">
     <center><h4>Site crée par:<br>
         Isabella Bacalao<br>

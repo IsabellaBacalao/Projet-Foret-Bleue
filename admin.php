@@ -94,18 +94,6 @@ $lst_produit = $res->fetchALL();
         </h1>
 
 
-        <div id="icon">
-
-            <a href="Compte.php">
-                <img src="user.png" alt="Compte" style="width:20px;height:20px;">
-            </a>
-            <a href="Panier.php">
-                <img src="panier.png" alt="Panier" style="width:20px;height:20px;">
-            </a>
-
-        </div>
-
-
     </center>
 </div>
 
@@ -175,6 +163,15 @@ $lst_produit = $res->fetchALL();
 </div>
 </div>
 </center>
+
+<!-- Nom et prénom des devs -->
+<br><br>
+<div id="IsaTim">
+    <center><h4>Site crée par:<br>
+        Isabella Bacalao<br>
+        Timothée Riou
+    </h4></center>
+</div>
 </body>
 </html>
 

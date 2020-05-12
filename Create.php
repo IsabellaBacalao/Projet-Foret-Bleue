@@ -1,8 +1,39 @@
+<?php
+include 'backend.php';
+
+$nom_utilisateur = "";
+$motdepasse = "";
+$prenom = "";
+$nom = "";
+$mail = "";
+
+$action= (isset ($_POST["action"])) ? $_POST["action"] : "";
+
+
+//Nouveau enregistrement
+
+if($action == "NEW"){
+    $nom_utilisateur = $_POST["username"];
+    $motdepasse = $_POST["password"];
+    $prenom = $_POST["prenom"];
+    $nom  = $_POST["nom"];
+    $mail = $_POST["mail"];
+
+    if($code_produit == ""){
+        $sql = "INSERT INTO utilisateur  VALUES ('$nom_utilisateur', '$motdepasse', '$prenom', '$nom', '$mail')";
+        $conn->query($sql);
+    }else{
+        echo "Cet utilisateur exist déjà";
+    }
+}
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>PANIER </title>
+    <title>INSCRIPTION </title>
     <link rel="stylesheet" href="BS341/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Mr+Dafoe"/>
@@ -27,6 +58,9 @@
             <a href="Panier.php">
                 <img src="panier.png" alt="Panier" style="width:20px;height:20px;border:0">
             </a>
+            <a href="admin.php">
+                <img src="admin.png" alt="Admin" style="width:20px;height:20px;border:0">
+            </a>
 
         </div>
 
@@ -42,19 +76,32 @@
 </div>
 
 <!-- Partie où l on se crée un compte -->
-<div id="créeVotreCompte">
+<div id="creeVotreCompte">
     <center>
-        <br>
-        <h3>adresse mail</h3>
-        <h3>Nom</h3>
-        <h3>prénom</h3>
-        <h3>Mot de passe</h3>
-        <br>
-        <h3>Créer</h3>
+    <form action="verification.php" method="post">
+    <br><br>
+    <label><b>Nom d utilisateur</b></label>
+    <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
+    <br><br>
+    <label><b>Mot de passe</b></label>
+    <input type="text" placeholder="Entrer le mot de passe" name="password" required>
+    <br><br>
+    <label><b>Prenom</b></label>
+    <input type="text" placeholder="Entrer votre prenom" name="prenom" required>
+    <br><br>
+    <label><b>Nom</b></label>
+    <input type="text" placeholder="Entrer votre Nom" name="nom" required>
+    <br><br>
+    <label><b>Mail</b></label>
+    <input type="text" placeholder="Entrer votre mail" name="mail" required>
+    <br><br>
+    <input type="submit" id='submit' value='CREER' >
+
     </center>
 </div>
 
 <!-- Nom et prénom des devs -->
+<br><br>
 <div id="IsaTim">
     <center><h4>Site crée par:<br>
         Isabella Bacalao<br>

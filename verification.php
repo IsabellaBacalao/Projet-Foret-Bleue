@@ -42,4 +42,5 @@ else
 {
    header('Location: Compte.php');
 }
+mysqli_close($db); // fermer la connexion
 ?>

@@ -6,6 +6,7 @@ $nom_produit = "";
 $prix = "";
 $taille = "";
 $quantité = "";
+$image = "";
 
 $action= (isset ($_POST["action"])) ? $_POST["action"] : "";
 
@@ -18,15 +19,17 @@ if($action == "NEW"){
     $prix = $_POST["Prix"];
     $taille = $_POST["Taille"];
     $quantité = $_POST["Quantité"];
+    $image = $_POST["image"];
 
     if($code_produit == ""){
-        $sql = "INSERT INTO produit  VALUES (NULL, '$nom_produit', '$prix', '$taille', '$quantité')";
+        $sql = "INSERT INTO produit  VALUES (NULL, '$nom_produit', '$prix', '$taille', '$quantité', '$image')";
         $conn->query($sql);
     }else{
         $sql = "update produit set Nom = '$nom_produit',
                                   Prix = '$prix',
-                                  Taille = '$taille'
-                                  Quantité = '$quantité'
+                                  Taille = '$taille',
+                                  Quantité = '$quantité',
+                                  image = '$image'
                                   WHERE Code = '$code_produit' ";
         $conn->query($sql);
         $code_produit = "";
@@ -34,6 +37,7 @@ if($action == "NEW"){
         $prix = "";
         $taille = "";
         $quantité = "";
+        $image = "";
 
     }
 }
@@ -50,6 +54,7 @@ if($action == "DEL"){
     $prix = "";
     $taille = "";
     $quantité = "";
+    $image = "";
 }
 
 // MODIFIER
@@ -64,6 +69,7 @@ if($action == "UPD"){
     $prix = $lst_produit["prix"];
     $taille = $lst_produit["taille"];
     $quantité = $lst_produit["quantité"];
+    $image = $lst_produit["image"];
 }
 
 
@@ -97,12 +103,12 @@ $lst_produit = $res->fetchALL();
     </center>
 </div>
 
-<div id="principale">
-<center>
-<h2> Gestion des produits </h2>
 
 <div class= "container">
+<center>
+<h2> Gestion des produits </h2>
 <h2> Produits </h2>
+</center>
 <table class="table table-striped">
     <tr>
     <th>Code </th>
@@ -110,6 +116,7 @@ $lst_produit = $res->fetchALL();
     <th>Prix </th>
     <th>Taille </th>
     <th>Quantité </th>
+    <th>Lien Image </th>
     <th></th>
     <th></th>
     </tr>
@@ -123,6 +130,7 @@ $lst_produit = $res->fetchALL();
 		<th><input type="text" name="Prix" id="prix" value="<?php echo $prix; ?>"></th>
 		<th><input type="text" name="Taille" id="taille" value="<?php echo $taille; ?>"></th>
 		<th><input type="text" name="Quantité" id="quantité" value="<?php echo $quantité; ?>"></th>
+		<th><input type="text" name="image" id="image" value="<?php echo $image; ?>"></th>
         <th><input type="submit" value="OK"></th>
 		<th></th>
 		</form>
@@ -136,6 +144,7 @@ $lst_produit = $res->fetchALL();
                    echo "<td>" . $row["prix"]    ."</td>";
                    echo "<td>" . $row["taille"]    ."</td>";
                    echo "<td>" . $row["quantité"]    ."</td>";
+                   echo "<td>" . $row["image"]    ."</td>";
             ?>
 
     	   <th>
@@ -164,15 +173,6 @@ $lst_produit = $res->fetchALL();
 </div>
 </center>
 
-<!-- Nom et prénom des devs -->
-<br><br>
-<div id="IsaTim">
-    <center><h4>Site crée par:<br>
-        Isabella Bacalao<br>
-        Timothée Riou
-    </h4></center>
-</div>
-</body>
-</html>
+<?php include 'footer.php';?>
 
 

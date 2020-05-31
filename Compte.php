@@ -71,15 +71,4 @@
 </div>
 
 
-
-<!-- Nom et prénom des devs -->
-<br><br>
-<div id="IsaTim">
-    <center><h4>Site crée par:<br>
-        Isabella Bacalao<br>
-        Timothée Riou
-    </h4></center>
-</div>
-</body>
-
-</html>
+<?php include 'footer.php';?>

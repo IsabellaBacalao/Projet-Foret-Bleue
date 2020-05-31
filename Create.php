@@ -1,6 +1,7 @@
 <?php
 include 'backend.php';
 
+$id_utilisateur = "";
 $nom_utilisateur = "";
 $motdepasse = "";
 $prenom = "";
@@ -9,23 +10,42 @@ $mail = "";
 
 $action= (isset ($_POST["action"])) ? $_POST["action"] : "";
 
-
 //Nouveau enregistrement
 
 if($action == "NEW"){
-    $nom_utilisateur = $_POST["username"];
-    $motdepasse = $_POST["password"];
+    $id_utilisateur = $_POST["id_utilisateur"];
+    $nom_utilisateur = $_POST["nom_utilisateur"];
+    $motdepasse = $_POST["motdepasse"];
     $prenom = $_POST["prenom"];
     $nom  = $_POST["nom"];
     $mail = $_POST["mail"];
 
-    if($code_produit == ""){
-        $sql = "INSERT INTO utilisateur  VALUES ('$nom_utilisateur', '$motdepasse', '$prenom', '$nom', '$mail')";
+    if($id_utilisateur == ""){
+        $sql = "INSERT INTO utilisateur  VALUES (NULL, '$nom_utilisateur', '$motdepasse', '$prenom', '$nom', '$mail')";
         $conn->query($sql);
     }else{
-        echo "Cet utilisateur exist déjà";
-    }
+             $sql = "update utilisateur set nom_utilisateur= '$nom_utilisateur',
+                                       motdepasse = '$motdepasse',
+                                       prenom = '$prenom'
+                                       nom = '$nom',
+                                       mail = '$mail'
+                                       WHERE id_utilisateur = '$id_utilisateur' ";
+             $conn->query($sql);
+             $id_utilisateur = "";
+             $nom_utilisateur = "";
+             $motdepasse = "";
+             $prenom = "";
+             $nom = "";
+             $mail = "";
+
+         }
 }
+
+$sql = "select * from utilisateur";
+$res = $conn->query($sql);
+$lst_utilisateur = $res->fetchALL();
+
+
 
 ?>
 
@@ -68,47 +88,42 @@ if($action == "NEW"){
     </center>
 </div>
 
-<div>
-    <center>
-        <h2><b>Crée votre compte</b></h2>
-    </center>
+<br>
+<div class= "container" id="creeVotreCompte">
+<center><h2>Crée votre compte </h2></center>
 
-</div>
 
 <!-- Partie où l on se crée un compte -->
-<div id="creeVotreCompte">
+
     <center>
-    <form action="verification.php" method="post">
-    <br><br>
+   <tr>
+    <form action=" " method="post">
+    <input type="hidden"   name="action" value="NEW">
+    <input type="hidden" name="id_utilisateur" id="id_utilisateur" value="<?php echo $id_utilisateur; ?>">
     <label><b>Nom d utilisateur</b></label>
-    <input type="text" placeholder="Entrer le nom d'utilisateur" name="username" required>
+    <input type="text" placeholder="Entrer le nom d'utilisateur" name="nom_utilisateur" value="<?php echo $nom_utilisateur; ?>">
     <br><br>
     <label><b>Mot de passe</b></label>
-    <input type="text" placeholder="Entrer le mot de passe" name="password" required>
+    <input type="text" placeholder="Entrer le mot de passe" name="motdepasse" value="<?php echo $motdepasse; ?>">
     <br><br>
     <label><b>Prenom</b></label>
-    <input type="text" placeholder="Entrer votre prenom" name="prenom" required>
+    <input type="text" placeholder="Entrer votre prenom" name="prenom" value="<?php echo $prenom; ?>">
     <br><br>
     <label><b>Nom</b></label>
-    <input type="text" placeholder="Entrer votre Nom" name="nom" required>
+    <input type="text" placeholder="Entrer votre Nom" name="nom" value="<?php echo $nom; ?>">
     <br><br>
     <label><b>Mail</b></label>
-    <input type="text" placeholder="Entrer votre mail" name="mail" required>
+    <input type="text" placeholder="Entrer votre mail" name="mail" value="<?php echo $mail; ?>">
     <br><br>
-    <input type="submit" id='submit' value='CREER' >
+    <input type="submit" value="NEW">
+    </form>
+    </tr>
 
+    <br><h3><a href="Compte.php">Entrer</a></h3>
     </center>
+
+
 </div>
+</center>
 
-<!-- Nom et prénom des devs -->
-<br><br>
-<div id="IsaTim">
-    <center><h4>Site crée par:<br>
-        Isabella Bacalao<br>
-        Timothée Riou
-    </h4></center>
-</div>
-
-</body>
-
-</html>
+<?php include 'footer.php';?>

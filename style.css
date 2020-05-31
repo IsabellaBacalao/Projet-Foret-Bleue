@@ -1,84 +1,85 @@
 html, body {
-top: 0;
-margin: auto;
-padding: 0;
-background-color: #e6e6e6;
+    top: 0;
+    margin: auto;
+    padding: 0;
+    background-color: #e6e6e6;
 }
 
 div#bandeau {
-position: relative;
-padding-top: 5px;
-height: 100%
-width:100px;
-height:270px;
-text-align: center;
-background-color: #ffcc00;
-
+    position: relative;
+    padding-top: 5px;
+    height: 250px;
+    width: 100%;
+    text-align: center;
+    background-color: #ffcc00;
 }
 
 h1 {
-font-family: "Mr Dafoe";
-font-size: 90px;
-font-style: normal;
-font-variant: normal;
-font-weight: 600;
-line-height: 120px; }
+    font-family: "Mr Dafoe", serif;
+    font-size: 90px;
+    font-style: normal;
+    font-variant: normal;
+    font-weight: 600;
+    line-height: 120px;
+}
 
 h2 {
-font-family: 'Julius Sans One';
-font-size: 22px;
+    font-family: 'Julius Sans One', serif;
+    font-size: 22px;
 }
 
 a:link {
-color: #006600;
-text-decoration: none }
+    color: #006600;
+    text-decoration: none
+}
 
 a:visited {
-color: #000000;
-text-decoration: none }
+    color: #000000;
+    text-decoration: none
+}
 
 a:hover {
-color: #006600;
-text-decoration: none }
+    color: #006600;
+    text-decoration: none
+}
 
 h3 {
-font-family: 'Julius Sans One';
-font-size: 16px;
-}
-h4 {
-font-family: 'Julius Sans One';
-font-size: 14px;
+    font-family: 'Julius Sans One', serif;
+    font-size: 16px;
 }
 
+h4 {
+    font-family: 'Julius Sans One', serif;
+    font-size: 14px;
+}
+
+div#footer {
+    width: 100%;
+    height: 110px;
+    border: 3px solid #ffcc00;
+}
+
+
 div#authentification {
-background-color: #ffcc00;
-width: 500px;
-height: 350px;
-margin-left: auto;
-margin-right: auto;
+    background-color: #ffcc00;
+    width: 500px;
+    height: 350px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 div#panier {
-background-color: #ffcc00;
-width: 550px;
-height: 600px;
-margin-left: auto;
-margin-right: auto;
+    background-color: #ffcc00;
+    width: 550px;
+    height: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 div#creeVotreCompte {
-background-color: #ffcc00;
-width: 500px;
-height: 500px;
-margin-left: auto;
-margin-right: auto;
+    background-color: #ffcc00;
+    width: 500px;
+    height: 500px;
+    margin-left: auto;
+    margin-right: auto;
 }
-
-div#IsaTim {
-width: 300px;
-height: 80px;
-border: 3px solid #ffcc00;
-margin-left: auto;
-margin-right: auto;
-}
-

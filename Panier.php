@@ -1,16 +1,64 @@
 <?php
 
-include 'backend.php';
+session_start();
 
-$code_produit = "";
-$nom_produit = "";
-$prix = "";
-$taille = "";
-$quantité = "";
+include 'fonction_panier.php';
 
-$sql = "select * from produit";
-$res = $conn->query($sql);
+$erreur = false;
 
+$action = (isset($_POST['accion'])? $_POST['accion']: null) ;
+
+if($action !== null){
+
+   if(!in_array($action,array('ajouterProduit', 'suppression', 'refresh')))
+   $erreur=true;
+
+    //récuperation des variables en POST
+    $l = (isset($_POST['l'])? $_POST['l']: null);
+    $p = (isset($_POST['p'])? $_POST['p']: null);
+    $q = (isset($_POST['q'])? $_POST['q']: null);
+
+     //Suppression des espaces verticaux
+    $l = preg_replace('#\v#', '',$l);
+
+    //On vérifie que $p soit un float
+    $p = floatval($p);
+    //On traite $q qui peut être un entier simple ou un tableau d'entiers
+
+    if (is_array($q)){
+          $quantité = array();
+          $i=0;
+          foreach ($q as $contenu){
+             $quantité[$i++] = intval($contenu);
+          }
+    }
+    else
+    $q = intval($q);
+
+}
+
+if (!$erreur){
+   switch($_POST['accion']){
+      Case 'ajouterProduit' :
+         ajouterProduit($l,$q,$p);
+
+         break;
+
+      Case "suppression":
+         supprimerProduit($l);
+         break;
+
+      Case "refresh" :
+         for ($i = 0 ; $i < count($quantité) ; $i++)
+         {
+            modifierQteProduit($_SESSION['panier']['libelleProduit'][$i],round($quantité[$i]));
+         }
+         break;
+
+      Default:
+         break;
+   }
+}
 ?>
 
 
@@ -53,8 +101,7 @@ $res = $conn->query($sql);
     <center>
      <!-- tester si l utilisateur est connecté -->
      <h2>
-          <?php
-          session_start();
+         <?php
           if(isset($_GET['deconnexion']))
           {
              if($_GET['deconnexion']==true)
@@ -63,52 +110,72 @@ $res = $conn->query($sql);
                 header("location:Acceuil.php");
              }
           }
-          else if($_SESSION['username'] !== ""){
+          else if((isset($_SESSION['username']) and ($_SESSION['username']!=""))){
               $user = $_SESSION['username'];
               // afficher un message
-              echo "<br>Bonjour $user, vous êtes connectés";
+              echo "<br>Bonjour $user, vous êtes connectés<br/><br/>";
           }
            ?>
-           <br><br>
            <a href="deconnexion.php">Déconnexion</a>
+           <br><br>
      </h2>
     </center>
 </div>
 
 
-
-<div>
-    <center>
-        <h2><b>PANIER</b></h2>
-    </center>
-
-</div>
-
-<!-- Panier -->
-<center>
 <div id="panier">
-    <table class="table table-bordered">
-    <tr>
-        <th>Code </th>
-        <th>Produit </th>
-        <th>Prix </th>
-        <th>Taille </th>
-        <th>Quantité </th>
-        <th></th>
-        <th></th>
-        </tr>
+    <center>
+    <br>
+    <h2><b>PANIER</b></h2>
+    <br>
+<?php if(!empty($_SESSION['panier'])) { ?>
+    <form method="post" action="panier.php">
+    <table style="width: 400px" class="table table-light table-bordered">
 
         <tr>
-        <form action="Panier.php" method="post">
-            <input type="Hidden" name="Code" value="<?echo $code_produit;?>">
-            <input type="Hidden" name="Nom" value="<?echo $nom_produit;?>">
-            <input type="Hidden" name="Prix" value="<?echo $prix ;?>">
-            <input type="Hidden" name="Taille" value="<?echo $taille;?>">
-            <input type="Hidden" name="Quantite" value="<?echo $quantité;?>"><th></th>
-            <input type="Submit" value="Ajouter au panier">
-    </form>
+            <th width="40%">Libellé</th>
+            <th width="40%">Quantité</th>
+            <th width="40%">Prix Unitaire</th>
+            <th width="40%">Action</th>
+        </tr>
 
+<?php } else {?>
+<div class = "alert alert-success">
+<?php
+if (creationPanier()){
+        $nbArticles = count($_SESSION['panier']['libelleProduit']);
+        if ($nbArticles <= 0)
+        echo "<tr><td>Votre panier est vide </ td></tr>";
+        else
+        {
+            for ($i=0 ;$i < $nbArticles ; $i++)
+            {
+                echo "<tr>";
+                echo "<td>".htmlspecialchars($_SESSION['panier']['libelleProduit'][$i])."</ td>";
+                echo "<td><input type=\"text\" size=\"4\" name=\"q[]\" value=\"".htmlspecialchars($_SESSION['panier']['quantité'][$i])."\"/></td>";
+                echo "<td>".htmlspecialchars($_SESSION['panier']['prix'][$i])."</td>";
+                echo "<td><a href=\"".htmlspecialchars("Panier.php?action=suppression&l=".rawurlencode($_SESSION['panier']['libelleProduit'][$i]))."\">XX</a></td>";
+                echo "</tr>";
+            }
+
+            echo "<tr><td colspan=\"2\"> </td>";
+            echo "<td colspan=\"2\">";
+            echo "Total : ".montantGlobal();
+            echo "</td></tr>";
+
+            echo "<tr><td colspan=\"4\">";
+            echo "<input type=\"submit\" value=\"Rafraichir\"/>";
+            echo "<input type=\"hidden\" name=\"action\" value=\"refresh\"/>";
+
+            echo "</td></tr>";
+        }
+    }
+?>
+</div>
+<?php } ?>
 </table>
+</form>
+
         <br>
         <h2>PAYER:</h2>
         <a href="https://www.paypal.com/fr/home%22%3E">
@@ -116,16 +183,4 @@ $res = $conn->query($sql);
 </div>
 </center>
 
-
-<!-- Nom et prénom des devs -->
-<br><br>
-<div id="IsaTim">
-    <center><h4>Site crée par:<br>
-        Isabella Bacalao<br>
-        Timothée Riou
-    </h4></center>
-</div>
-
-</body>
-
-</html>
+<?php include 'footer.php';?>
